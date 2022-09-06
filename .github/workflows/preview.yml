@@ -15,11 +15,11 @@ jobs:
     if: ${{ github.event.action == 'opened' || github.event.action == 'synchronize' }}
     runs-on: ubuntu-latest
     steps:
+      - run: mkdir -p .snaplet/snaphosts
       - id: snaplet
         uses: snaplet/action@v1
 
       - name: Export variable
-        shell: bash
         run: export DATABASE_URL=${{ steps.snaplet.outputs.database-url }}
 
       - name: Ignore build
