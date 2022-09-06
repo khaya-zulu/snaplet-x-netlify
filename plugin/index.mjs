@@ -3,7 +3,6 @@ export const onPreBuild = async function ({
     build,
     status,
     cache,
-    run,
     utils: { run },
   },
 }) {
