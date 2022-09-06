@@ -6,5 +6,5 @@
   publish = "public/"
 
 [[plugins]]
-  package = "/plugin"
+  package = "/plugin/index.mjs"
   
