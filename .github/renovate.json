@@ -1,0 +1,21 @@
+{
+  "extends": ["config:base", "docker:disable"],
+  "automerge": false,
+  "masterIssue": true,
+  "reviewers": ["@2color"],
+  "baseBranches": ["master"],
+  "packageRules": [
+    {
+      "baseBranchList": ["master"],
+      "packageNames": ["prisma", "@prisma/client"],
+      "enabled": true,
+      "updateTypes": ["minor"]
+    },
+    {
+      "packageNames": ["netlify-cli"],
+      "updateTypes": ["minor"],
+      "schedule": ["at any time"],
+      "automerge": true
+    }
+  ]
+}

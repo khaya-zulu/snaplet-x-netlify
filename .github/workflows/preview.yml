@@ -1,0 +1,18 @@
+name: Preview Environment
+
+env:
+  NETLIFY_ACCESS_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
+  NETLIFY_SITE_ID: ""
+
+on:
+  pull_request:
+    types: [opened, synchronize, closed]
+    branches:
+      - main
+
+jobs:
+  deploy:
+    if: ${{ github.event.action == 'opened' || github.event.action == 'synchronize' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: https://github.com/khaya-zulu/snaplet-netlify-action
