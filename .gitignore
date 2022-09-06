@@ -12,4 +12,5 @@ sandbox
 .netlify
 
 # Ignore files containing environment variables
-.env*
+.env*.snaplet/snapshots
+.snaplet/structure.d.ts
