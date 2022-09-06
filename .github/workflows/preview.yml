@@ -1,8 +1,8 @@
 name: Preview Environment
 
 env:
-  NETLIFY_ACCESS_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
-  NETLIFY_SITE_ID: ""
+  SNAPLET_ACCESS_TOKEN: ${{ secrets.SNAPLET_ACCESS_TOKEN }}
+  SNAPLET_PROJECT_ID: cl7otzbdj185499gelyehmp6y11
 
 on:
   pull_request:
@@ -15,4 +15,12 @@ jobs:
     if: ${{ github.event.action == 'opened' || github.event.action == 'synchronize' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: khaya-zulu/snaplet-netlify-action@main
+      - id: snaplet
+        uses: snaplet/action@v1
+
+      - shell: bash
+        run: export DATABASE_URL=${{ steps.snaplet.outputs.database-url }}
+
+      - name: Ignore build
+        shell: bash
+        run: "node -e 'process.exit(process.env.CONTEXT === `deploy-preview` ? 0 : 1)'"
