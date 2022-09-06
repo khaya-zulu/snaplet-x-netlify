@@ -1,4 +1,4 @@
 {
-  "databaseUrl": "postgresql://postgres@localhost:5432/postgres",
+  "databaseUrl": "postgresql://postgres@localhost:5432/netlify",
   "projectId": "cl7otzbdj185499gelyehmp6y11"
 }

@@ -1,0 +1,37 @@
+{
+  "date": "2022-09-05T15:04:47.955Z",
+  "name": "metz-inlet-interface",
+  "origin": "CLOUD",
+  "tables": [
+    {
+      "bytes": 330,
+      "table": "_prisma_migrations",
+      "schema": "public",
+      "filename": "public._prisma_migrations.csv.br",
+      "timeToDump": 161
+    },
+    {
+      "bytes": 235,
+      "table": "Post",
+      "schema": "public",
+      "filename": "public.Post.csv.br",
+      "timeToDump": 168
+    },
+    {
+      "bytes": 53,
+      "table": "Profile",
+      "schema": "public",
+      "filename": "public.Profile.csv.br",
+      "timeToDump": 157
+    },
+    {
+      "bytes": 103,
+      "table": "User",
+      "schema": "public",
+      "filename": "public.User.csv.br",
+      "timeToDump": 172
+    }
+  ],
+  "totalSize": 721,
+  "snapshotId": "cl7ow97ir191527gelydvfsqf4b"
+}

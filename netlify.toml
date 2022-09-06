@@ -4,4 +4,7 @@
   functions = "functions/"
 
   publish = "public/"
+
+[[plugins]]
+  package = "/plugins"
   
