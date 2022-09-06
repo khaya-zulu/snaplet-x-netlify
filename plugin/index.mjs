@@ -1,8 +1,10 @@
-export const onPreBuild = async function ({
-  utils: { build, status, cache, run },
-}) {
-  await run.command("curl -sL https://app.snaplet.dev/get-cli/");
+export const onPreBuild = async function ({ netlifyConfig }) {
+  const commands = [
+    netlifyConfig.build.command || "",
+    "curl -sL https://app.snaplet.dev/get-cli/ | bash",
+    "snaplet database create --git --latest",
+    "snaplet database url --git",
+  ];
 
-  await run.command("snaplet database create --git --latest");
-  await run.command("snaplet database url --git");
+  netlifyConfig.build.command = commands.join(" && ");
 };
