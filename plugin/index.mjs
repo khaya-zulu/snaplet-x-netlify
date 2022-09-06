@@ -1,10 +1,5 @@
 export const onPreBuild = async function ({
-  utils: {
-    build,
-    status,
-    cache,
-    utils: { run },
-  },
+  utils: { build, status, cache, run },
 }) {
   await run.command("curl -sL https://app.snaplet.dev/get-cli/");
 
