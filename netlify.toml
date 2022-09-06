@@ -6,5 +6,5 @@
   publish = "public/"
 
 [[plugins]]
-  package = "/plugins"
+  package = "/plugin"
   
