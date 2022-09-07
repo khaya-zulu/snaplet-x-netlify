@@ -22,9 +22,9 @@ jobs:
       - name: Export variable
         run: export DATABASE_URL=${{ steps.snaplet.outputs.database-url }}
 
-      - name: Ignore build
-        shell: bash
-        run: "node -e 'process.exit(process.env.CONTEXT === `deploy-preview` ? 0 : 1)'"
+      # - name: Ignore build
+      #   shell: bash
+      #   run: "node -e 'process.exit(process.env.CONTEXT === `deploy-preview` ? 0 : 1)'"
   delete:
     if: ${{ github.event.action == 'closed' }}
     runs-on: ubuntu-latest
