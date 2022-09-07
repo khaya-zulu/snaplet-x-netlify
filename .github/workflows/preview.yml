@@ -33,6 +33,3 @@ jobs:
       - uses: snaplet/action@v1
         with:
           delete: true
-      - uses: snaplet/vercel-action@v1
-        with:
-          delete: true
