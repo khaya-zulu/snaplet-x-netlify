@@ -5,6 +5,6 @@
 
   publish = "public/"
 
-[[plugins]]
-  package = "/plugin/index.mjs"
+# [[plugins]]
+#   package = "/plugin/index.mjs"
   
