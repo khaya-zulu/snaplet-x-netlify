@@ -21,7 +21,7 @@ jobs:
 
       - uses: khaya-zulu/snaplet-netlify-action@main
         with:
-          env: DATABASE_URL=${{ steps.snaplet.outputs.database-url }}
+          context: Hello world
 
       # - name: Ignore build
       #   shell: bash
