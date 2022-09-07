@@ -5,6 +5,6 @@
 
   publish = "public/"
 
-# [[plugins]]
-#   package = "/plugin/index.mjs"
+  ignore = "node -e 'process.exit(process.env.CONTEXT === `deploy-preview` ? 0 : 1)'"
+
   

@@ -25,10 +25,6 @@ jobs:
       - uses: khaya-zulu/snaplet-netlify-action@main
         with:
           database-url: ${{ steps.snaplet.outputs.database-url }}
-
-      # - name: Ignore build
-      #   shell: bash
-      #   run: "node -e 'process.exit(process.env.CONTEXT === `deploy-preview` ? 0 : 1)'"
   delete:
     if: ${{ github.event.action == 'closed' }}
     runs-on: ubuntu-latest
