@@ -81,7 +81,7 @@
         >
           Load posts v5
         </button>
-        <!-- <div class="loader invisible"></div> -->
+        <div class="loader invisible"></div>
       </div>
     </div>
 
@@ -112,6 +112,7 @@
             responseContainer.textContent = "Error fetching";
           })
           .finally(function () {
+            console.log("DIauhsahuh");
             loader.classList.add("invisible");
           });
       };
