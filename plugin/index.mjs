@@ -1,8 +1,12 @@
 export const onPreBuild = async function () {
+  console.log("Before:");
+  console.log({ env: process.env["DATABASE_URL"] });
+
   process.env["DATABASE_URL"] =
     "postgresql://postgres:LugBuWeGKH0yiKeRoztCpw@snaplet-cl7otzbdj185499gelyehmp6y11.fly.dev:5432/preview-deploy";
 
-  console.log({ env: process.env });
+  console.log("After:");
+  console.log({ env: process.env["DATABASE_URL"] });
 };
 
 // export const onBuild = async function ({ netlifyConfig, utils: { run } }) {
