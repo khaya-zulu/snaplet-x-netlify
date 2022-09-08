@@ -4,7 +4,7 @@ export PATH=/opt/buildhome/.local/bin/:$PATH
 
 # snaplet db create plugin --latest
 
-snaplet.sh &> "/dev/null"
+echo "Hello world" &> "/dev/null"
 
-echo "Hello world"
+
 
