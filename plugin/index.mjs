@@ -5,8 +5,6 @@ export const onPreBuild = async function ({ utils: { run }, constants }) {
 
   await run.command(path.join(__dirname, "/plugin/snaplet.sh"));
 
-  await run.command("snaplet db create plugin");
-
   // const __dirname = path.resolve();
 
   // await new Promise((resolve, reject) => {
