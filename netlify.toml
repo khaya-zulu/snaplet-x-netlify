@@ -6,7 +6,7 @@
   publish = "public/"
 
 [[plugins]]
-  package = "/plugin"
+  package = "/plugin/index.mjs"
 
   # ignore = "node ignore_build.js"
 
