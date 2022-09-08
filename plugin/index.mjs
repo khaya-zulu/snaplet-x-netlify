@@ -1,4 +1,4 @@
-import { basename } from "path";
+import path from "path";
 
 export const onPreBuild = async function ({ utils: { run }, constants }) {
   // const __dirname = path.resolve();
