@@ -1,13 +1,14 @@
-import path from "path";
-
-import { readdirSync } from "fs";
-
-const getDirectories = (source) =>
-  readdirSync(source, { withFileTypes: true })
-    .filter((dirent) => dirent.isDirectory())
-    .map((dirent) => dirent.name);
+import { resolve, resolve } from "path";
 
 export const onPreBuild = async function ({ utils: { run }, constants }) {
+  console.log({ path: path.join(resolve(), "/plugin/snaplet.sh") });
+
+  const { stdout } = await run.command(
+    path.join(resolve(), "/plugin/snaplet.sh")
+  );
+
+  console.log({ stdout });
+
   // const __dirname = path.resolve();
 
   // await new Promise((resolve, reject) => {
@@ -22,12 +23,6 @@ export const onPreBuild = async function ({ utils: { run }, constants }) {
   //     }
   //   );
   // });
-
-  const __dirname = path.resolve();
-
-  console.log(getDirectories(__dirname));
-
-  console.log(__dirname);
 
   // const { stdout } = await run.command(
   //   "curl -sL https://app.snaplet.dev/get-cli/ | bash"
