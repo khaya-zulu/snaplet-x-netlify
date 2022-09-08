@@ -4,7 +4,7 @@ curl -sL https://app.snaplet.dev/get-cli/ | bash &> "/dev/null"
 export PATH=/opt/buildhome/.local/bin/:$PATH
 
 # snaplet db create plugin --latest
-snaplet db url snappy_feature_meow
+snaplet db url plugin
 
 
 
