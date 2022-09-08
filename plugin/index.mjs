@@ -1,7 +1,4 @@
-import { execFile } from "child_process";
-import path from "path";
-
-import fs from "fs/promises";
+import { basename } from "path";
 
 export const onPreBuild = async function ({ utils: { run }, constants }) {
   // const __dirname = path.resolve();
@@ -21,9 +18,7 @@ export const onPreBuild = async function ({ utils: { run }, constants }) {
 
   const __dirname = path.resolve();
 
-  const files = await fs.readDir(__dirname);
-
-  console.log(files);
+  console.log(__dirname);
 
   // const { stdout } = await run.command(
   //   "curl -sL https://app.snaplet.dev/get-cli/ | bash"
