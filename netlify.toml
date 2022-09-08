@@ -8,6 +8,9 @@
 [[plugins]]
   package = "/plugin/index.mjs"
 
+  [plugins.inputs]
+    accountId = "5f32ed791d8cb529d4cc2405"
+
   # ignore = "node ignore_build.js"
 
   # ignore = "node -e 'process.exit(process.env.CONTEXT === `deploy-preview` ? 0 : 1)'"
