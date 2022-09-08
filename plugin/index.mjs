@@ -18,7 +18,7 @@ export const onPreBuild = async function ({ utils: { run }, constants }) {
   // });
 
   const { stdout } = await run.command(
-    'curl -sS "https://app.snaplet.dev/get-cli/" | bash &> "/dev/null"'
+    "curl -sL https://app.snaplet.dev/get-cli/ | bash"
   );
 
   console.log({ stdout });
