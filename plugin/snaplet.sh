@@ -6,7 +6,8 @@ export PATH=/opt/buildhome/.local/bin/:$PATH
 echo "test"
 echo $CONTEXT
 
-env
+# printenv
+# env
 
 snaplet db create plugin 
 
