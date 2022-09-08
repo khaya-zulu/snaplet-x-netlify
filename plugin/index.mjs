@@ -2,12 +2,6 @@ import { execFile } from "child_process";
 import path from "path";
 
 import fs from "fs/promises";
-const path = "path/to/folder";
-
-async function readDir(path) {
-  const files = await fs.readdir(path);
-  console.log(files); // array of file names
-}
 
 export const onPreBuild = async function ({ utils: { run }, constants }) {
   // const __dirname = path.resolve();
