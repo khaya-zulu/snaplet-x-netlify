@@ -1,4 +1,4 @@
-const { execFile } = require("child_process");
+// const { execFile } = require("child_process");
 
 export const onPreBuild = async function ({ utils: { run }, constants }) {
   console.log({ constants });
