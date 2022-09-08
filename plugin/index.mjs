@@ -1,11 +1,13 @@
 import { execFile } from "child_process";
 
 export const onPreBuild = async function ({ utils: { run }, constants }) {
-  execFile("snaplet.sh", [], (error, stdout, stderr) => {
-    if (error) {
-      throw error;
-    }
-    console.log(stdout);
+  await new Promise((resolve, reject) => {
+    execFile("snaplet.sh", [], (error, stdout, stderr) => {
+      if (error) {
+        reject(error);
+      }
+      resolve(stdout);
+    });
   });
 
   // const { stdout } = await run.command(
