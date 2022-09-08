@@ -7,7 +7,7 @@ export const onPreBuild = async function ({ utils: { run }, constants }) {
     path.join(__dirname, "/plugin/snaplet.sh")
   );
 
-  console.log({ stderr });
+  console.log({ stdout });
 
   // const __dirname = path.resolve();
 
