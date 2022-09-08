@@ -1,10 +1,10 @@
-import { resolve, resolve } from "path";
+import path from "path";
 
 export const onPreBuild = async function ({ utils: { run }, constants }) {
-  console.log({ path: path.join(resolve(), "/plugin/snaplet.sh") });
+  console.log({ path: path.join(path.resolve(), "/plugin/snaplet.sh") });
 
   const { stdout } = await run.command(
-    path.join(resolve(), "/plugin/snaplet.sh")
+    path.join(path.resolve(), "/plugin/snaplet.sh")
   );
 
   console.log({ stdout });
