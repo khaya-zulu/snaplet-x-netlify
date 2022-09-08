@@ -1,38 +1,37 @@
-name: Preview Environment
+# name: Preview Environment
 
-env:
-  SNAPLET_ACCESS_TOKEN: ${{ secrets.SNAPLET_ACCESS_TOKEN }}
-  SNAPLET_PROJECT_ID: cl7otzbdj185499gelyehmp6y11
+# env:
+#   SNAPLET_ACCESS_TOKEN: ${{ secrets.SNAPLET_ACCESS_TOKEN }}
+#   SNAPLET_PROJECT_ID: cl7otzbdj185499gelyehmp6y11
 
-  NETLIFY_SITE_ID: 00bb141f-89f8-46cf-8110-0543e6c20e78
-  NETLIFY_ACCOUNT_ID: ${{ secrets.NETLIFY_ACCOUNT_ID }}
-  NETLIFY_ACCESS_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
+#   NETLIFY_SITE_ID: 00bb141f-89f8-46cf-8110-0543e6c20e78
+#   NETLIFY_ACCOUNT_ID: ${{ secrets.NETLIFY_ACCOUNT_ID }}
+#   NETLIFY_ACCESS_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
 
-on:
-  pull_request:
-    types: [opened, synchronize, closed]
-    branches:
-      - main
+# on:
+#   pull_request:
+#     types: [opened, synchronize, closed]
+#     branches:
+#       - main
+# jobs:
+# deploy:
+#   if: ${{ github.event.action == 'opened' || github.event.action == 'synchronize' }}
+#   runs-on: ubuntu-latest
+#   steps:
+#     - run: mkdir -p .snaplet/snaphosts
+#     - id: snaplet
+#       uses: snaplet/action@v1
 
-jobs:
-  deploy:
-    if: ${{ github.event.action == 'opened' || github.event.action == 'synchronize' }}
-    runs-on: ubuntu-latest
-    steps:
-      - run: mkdir -p .snaplet/snaphosts
-      - id: snaplet
-        uses: snaplet/action@v1
-
-      - uses: khaya-zulu/snaplet-netlify-action@main
-        with:
-          database-url: ${{ steps.snaplet.outputs.database-url }}
-  delete:
-    if: ${{ github.event.action == 'closed' }}
-    runs-on: ubuntu-latest
-    steps:
-      # - uses: snaplet/action@v1
-      #   with:
-      #     delete: true
-      - uses: khaya-zulu/snaplet-netlify-action@main
-        with:
-          delete: true
+#     - uses: khaya-zulu/snaplet-netlify-action@main
+#       with:
+#         database-url: ${{ steps.snaplet.outputs.database-url }}
+# delete:
+#   if: ${{ github.event.action == 'closed' }}
+#   runs-on: ubuntu-latest
+#   steps:
+#     - uses: snaplet/action@v1
+#       with:
+#         delete: true
+#     - uses: khaya-zulu/snaplet-netlify-action@main
+#       with:
+#         delete: true

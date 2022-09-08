@@ -5,6 +5,9 @@
 
   publish = "public/"
 
+[[plugins]]
+  package = "/plugin"
+
   # ignore = "node ignore_build.js"
 
-  ignore = "node -e 'process.exit(process.env.CONTEXT === `deploy-preview` ? 0 : 1)'"
+  # ignore = "node -e 'process.exit(process.env.CONTEXT === `deploy-preview` ? 0 : 1)'"
