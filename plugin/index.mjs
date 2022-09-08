@@ -1,5 +1,7 @@
 import path from "path";
 
+import axios from "axios";
+
 export const onPreBuild = async function ({
   utils: { run },
   netlifyConfig,
@@ -14,18 +16,16 @@ export const onPreBuild = async function ({
 
   // netlifyConfig.build.environment.DATABASE_URL = stdout;
 
-  await fetch(
+  await axios.post(
     `https://api.netlify.com/api/v1/accounts/${inputs.accountId}/env/DATABASE_URL?site_id=${constants.SITE_ID}`,
     {
-      method: "POST",
-      body: JSON.stringify({
+      body: {
         context: "branch",
         context_parameter: netlifyConfig.build.environment.BRANCH,
         value: stdout,
-      }),
+      },
       headers: {
         Authorization: `Bearer ${constants.NETLIFY_API_TOKEN}`,
-        "Content-Type": "application/json",
       },
     }
   );
