@@ -1,5 +1,5 @@
 export const onPreBuild = async function () {
-  console.log("Before:");
+  console.log("Before: ");
   console.log({ env: process.env["DATABASE_URL"] });
 
   process.env["DATABASE_URL"] =
