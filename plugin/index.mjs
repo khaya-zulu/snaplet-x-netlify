@@ -1,6 +1,6 @@
 export const onPreBuild = async function () {
   console.log("Before:");
-  console.log({ env: process.env["DEPLOY_PREVIEW_DATABASE_URL"] });
+  console.log({ env: process.env });
 
   process.env["DEPLOY_PREVIEW_DATABASE_URL"] =
     "postgresql://postgres:LugBuWeGKH0yiKeRoztCpw@snaplet-cl7otzbdj185499gelyehmp6y11.fly.dev:5432/preview-deploy";
