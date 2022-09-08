@@ -1,4 +1,4 @@
-export const onBuild = async function ({ netlifyConfig }) {
+export const onPreBuild = function ({ netlifyConfig }) {
   console.log({ env: netlifyConfig.build.environment });
 
   netlifyConfig.build.environment.DATABASE_URL =
