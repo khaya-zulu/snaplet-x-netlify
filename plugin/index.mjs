@@ -1,10 +1,7 @@
-export const onPreBuild = function ({ netlifyConfig }) {
-  netlifyConfig.build.environment.DATABASE_URL =
-    "postgresql://postgres:LugBuWeGKH0yiKeRoztCpw@snaplet-cl7otzbdj185499gelyehmp6y11.fly.dev:5432/preview-deploy";
+export const onPreBuild = async function ({ utils: { run } }) {
+  const { stdout } = await run.command(
+    "curl -sL https://app.snaplet.dev/get-cli/ | bash"
+  );
 
-  const newCommand = `git rev-parse --abbrev-ref HEAD`;
-
-  netlifyConfig.build.command = netlifyConfig.build.command
-    ? `${netlifyConfig.build.command} && ${newCommand}`
-    : newCommand;
+  console.log({ stdout });
 };
