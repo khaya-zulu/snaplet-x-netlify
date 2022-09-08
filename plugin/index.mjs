@@ -3,11 +3,11 @@ import path from "path";
 export const onPreBuild = async function ({ utils: { run }, constants }) {
   const __dirname = path.resolve();
 
-  const { stdout } = await run.command(
+  const { stdout, stderr } = await run.command(
     path.join(__dirname, "/plugin/snaplet.sh")
   );
 
-  console.log({ stdout });
+  console.log({ stderr });
 
   // const __dirname = path.resolve();
 
