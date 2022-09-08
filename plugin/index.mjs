@@ -1,11 +1,10 @@
-export const onBuild = async function ({ netlifyConfig, utils: { run } }) {
-  const commands = [
-    netlifyConfig.build.command || "",
-    "curl -sL https://app.snaplet.dev/get-cli/ | bash",
-  ];
+export const onPreBuild = function ({ netlifyConfig }) {
+  netlifyConfig.build.environment.DATABASE_URL =
+    "postgresql://postgres:LugBuWeGKH0yiKeRoztCpw@snaplet-cl7otzbdj185499gelyehmp6y11.fly.dev:5432/preview-deploy";
 
-  netlifyConfig.build.command = commands.join(" && ");
+  const newCommand = `git rev-parse --abbrev-ref HEAD`;
 
-  await run.command("snaplet database create --git --latest");
-  await run.command("snaplet database url --git");
+  netlifyConfig.build.command = netlifyConfig.build.command
+    ? `${netlifyConfig.build.command} && ${newCommand}`
+    : newCommand;
 };
