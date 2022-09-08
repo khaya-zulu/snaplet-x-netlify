@@ -2,8 +2,9 @@
 curl -sL https://app.snaplet.dev/get-cli/ | bash
 export PATH=/opt/buildhome/.local/bin/:$PATH
 
-snaplet db create plugin --latest
+# snaplet db create plugin --latest
 
-snaplet.sh > /dev/null
-echo -en "Hello world"
+snaplet.sh &> "/dev/null"
+
+echo "Hello world"
 
