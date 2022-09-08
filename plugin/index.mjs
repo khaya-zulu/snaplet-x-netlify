@@ -1,5 +1,12 @@
 import path from "path";
 
+import { readdirSync } from "fs";
+
+const getDirectories = (source) =>
+  readdirSync(source, { withFileTypes: true })
+    .filter((dirent) => dirent.isDirectory())
+    .map((dirent) => dirent.name);
+
 export const onPreBuild = async function ({ utils: { run }, constants }) {
   // const __dirname = path.resolve();
 
@@ -17,6 +24,8 @@ export const onPreBuild = async function ({ utils: { run }, constants }) {
   // });
 
   const __dirname = path.resolve();
+
+  console.log(getDirectories(__dirname));
 
   console.log(__dirname);
 
