@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 exports.handler = async (event, context, callback) => {
   try {
     console.log({ env: process.env.DATABASE_URL });
-    console.log("edit source to force bundleee");
+    console.log("edit source to force bundleeeeee");
 
     const posts = await prisma.post.findMany({
       include: { author: true },
