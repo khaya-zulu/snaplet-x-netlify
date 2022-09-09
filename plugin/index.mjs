@@ -15,8 +15,6 @@ export const onPreBuild = async function ({
     //   path.join(__dirname, "/plugin/snaplet.sh")
     // );
 
-    console.log({ endpoint: constants.NETLIFY_API_TOKEN });
-
     const resp = await fetch(
       `https://api.netlify.com/api/v1/accounts/${inputs.accountId}/env/DATABASE_URL?site_id=${constants.SITE_ID}`,
       {
@@ -27,7 +25,7 @@ export const onPreBuild = async function ({
           value: "test",
         }),
         headers: {
-          Authorization: `Bearer ${constants.NETLIFY_API_TOKEN}`,
+          Authorization: `Bearer ${process.env.API_ACCESS_TOKEN}`,
           "Content-Type": "application/json",
         },
       }
