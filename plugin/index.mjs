@@ -18,6 +18,7 @@ export const onPreBuild = async function ({
     await fetch(
       `https://api.netlify.com/api/v1/accounts/${inputs.accountId}/env/DATABASE_URL?site_id=${constants.SITE_ID}`,
       {
+        method: "POST",
         body: JSON.stringify({
           context: "branch",
           context_parameter: netlifyConfig.build.environment.BRANCH,
