@@ -8,8 +8,7 @@ export const onPreBuild = async function ({
   constants,
   netlifyConfig,
 }) {
-  console.log({ env: process.env });
-  if (process.env.CONTEXT === "local") {
+  if (process.env.CONTEXT === "deploy-preview") {
     const __dirname = path.resolve();
 
     const { stdout } = await run.command(
