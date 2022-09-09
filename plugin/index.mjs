@@ -13,7 +13,7 @@ export const onPreBuild = async function ({
     BRANCH: process.env.BRANCH,
   });
 
-  if (process.env.CONTEXT === "local") {
+  if (process.env.CONTEXT === "local-") {
     const __dirname = path.resolve();
 
     const { stdout } = await run.command(
