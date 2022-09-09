@@ -1,7 +1,7 @@
 import axios from "axios";
 import path from "path";
 
-export const onPreBuild = async function ({ utils: { run } }) {
+export const onPreBuild = async function ({ utils: { run }, inputs }) {
   if (process.env.CONTEXT === "deploy-preview") {
     const __dirname = path.resolve();
 
