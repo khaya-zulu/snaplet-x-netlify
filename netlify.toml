@@ -1,13 +1,7 @@
 [build]
   command = "npm run build"
-
   functions = "functions/"
-
   publish = "public/"
 
 [[plugins]]
   package = "/plugin/index.mjs"
-
-  # ignore = "node ignore_build.js"
-
-  # ignore = "node -e 'process.exit(process.env.CONTEXT === `deploy-preview` ? 0 : 1)'"
