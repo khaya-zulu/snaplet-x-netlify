@@ -56,9 +56,9 @@ export const onPreBuild = async function ({ utils: { run } }) {
   // );
 };
 
-export const onError = async ({ utils: { run } }) => {
-  if (process.env.CONTEXT === "deploy-preview") {
-    const __dirname = path.resolve();
-    await run.command(path.join(__dirname, "/plugin/delete.sh"));
-  }
-};
+// export const onError = async ({ utils: { run } }) => {
+//   if (process.env.CONTEXT === "deploy-preview") {
+//     const __dirname = path.resolve();
+//     await run.command(path.join(__dirname, "/plugin/delete.sh"));
+//   }
+// };
