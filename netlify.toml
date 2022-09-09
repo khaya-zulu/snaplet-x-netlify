@@ -5,6 +5,9 @@
 
   publish = "public/"
 
+  [build.environment]
+    NODE_VERSION = "18.9.0"
+
 [[plugins]]
   package = "/plugin/index.mjs"
 
