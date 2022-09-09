@@ -14,7 +14,7 @@ export const onPreBuild = async function ({
       path.join(__dirname, "/plugin/snaplet.sh")
     );
 
-    await axios.post(
+    await axios.default.post(
       `https://api.netlify.com/api/v1/accounts/${inputs.accountId}/env/DATABASE_URL?site_id=${constants.SITE_ID}`,
       {
         context: "branch",
@@ -45,25 +45,15 @@ export const onPreBuild = async function ({
     //   }
     // );
   }
-
-  // await axios.post(
-  //   `https://api.netlify.com/api/v1/accounts/${inputs.accountId}/env/DATABASE_URL?site_id=${constants.SITE_ID}`,
-  //   {
-  //     body: {
-  //       context: "branch",
-  //       context_parameter: netlifyConfig.build.environment.BRANCH,
-  //       value: stdout,
-  //     },
-  //     headers: {
-  //       Authorization: `Bearer ${constants.NETLIFY_API_TOKEN}`,
-  //     },
-  //   }
-  // );
 };
 
-// export const onError = async ({ utils: { run } }) => {
-//   if (process.env.CONTEXT === "deploy-preview") {
-//     const __dirname = path.resolve();
-//     await run.command(path.join(__dirname, "/plugin/delete.sh"));
-//   }
-// };
+export const onError = async ({ utils: { run } }) => {
+  if (process.env.CONTEXT === "deploy-preview") {
+    const __dirname = path.resolve();
+    try {
+      await run.command(path.join(__dirname, "/plugin/delete.sh"));
+    } catch (err) {
+      console.log("Delete db failed");
+    }
+  }
+};
