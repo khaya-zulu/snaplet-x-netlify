@@ -33,8 +33,5 @@ export const onPreBuild = async function ({
 
 export const onError = async ({ utils: { run }, netlifyConfig }) => {
   const __dirname = path.resolve();
-
-  console.log({ env: netlifyConfig.build.environment });
-
   await run.command(path.join(__dirname, "/plugin/delete.sh"));
 };
