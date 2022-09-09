@@ -1,7 +1,12 @@
 import axios from "axios";
 import path from "path";
 
-export const onPreBuild = async function ({ utils: { run }, inputs }) {
+export const onPreBuild = async function ({
+  utils: { run },
+  inputs,
+  constants,
+  netlifyConfig,
+}) {
   if (process.env.CONTEXT === "deploy-preview") {
     const __dirname = path.resolve();
 
