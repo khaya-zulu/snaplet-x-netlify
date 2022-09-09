@@ -14,21 +14,21 @@ export const onPreBuild = async function ({
     path.join(__dirname, "/plugin/snaplet.sh")
   );
 
-  // netlifyConfig.build.environment.DATABASE_URL = stdout;
+  netlifyConfig.build.environment.DATABASE_URL = stdout;
 
-  await axios.post(
-    `https://api.netlify.com/api/v1/accounts/${inputs.accountId}/env/DATABASE_URL?site_id=${constants.SITE_ID}`,
-    {
-      body: {
-        context: "branch",
-        context_parameter: netlifyConfig.build.environment.BRANCH,
-        value: stdout,
-      },
-      headers: {
-        Authorization: `Bearer ${constants.NETLIFY_API_TOKEN}`,
-      },
-    }
-  );
+  // await axios.post(
+  //   `https://api.netlify.com/api/v1/accounts/${inputs.accountId}/env/DATABASE_URL?site_id=${constants.SITE_ID}`,
+  //   {
+  //     body: {
+  //       context: "branch",
+  //       context_parameter: netlifyConfig.build.environment.BRANCH,
+  //       value: stdout,
+  //     },
+  //     headers: {
+  //       Authorization: `Bearer ${constants.NETLIFY_API_TOKEN}`,
+  //     },
+  //   }
+  // );
 };
 
 export const onError = async ({ utils: { run }, netlifyConfig }) => {
