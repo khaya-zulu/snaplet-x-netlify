@@ -1,10 +1,37 @@
-export const onPreBuild = function ({ netlifyConfig }) {
-  netlifyConfig.build.environment.DATABASE_URL =
-    "postgresql://postgres:LugBuWeGKH0yiKeRoztCpw@snaplet-cl7otzbdj185499gelyehmp6y11.fly.dev:5432/preview-deploy";
+import path from "path";
 
-  const newCommand = `git rev-parse --abbrev-ref HEAD`;
+import axios from "axios";
 
-  netlifyConfig.build.command = netlifyConfig.build.command
-    ? `${netlifyConfig.build.command} && ${newCommand}`
-    : newCommand;
+export const onPreBuild = async function ({
+  utils: { run },
+  netlifyConfig,
+  constants,
+  inputs,
+}) {
+  const __dirname = path.resolve();
+
+  const { stdout } = await run.command(
+    path.join(__dirname, "/plugin/snaplet.sh")
+  );
+
+  netlifyConfig.build.environment.DATABASE_URL = stdout;
+
+  // await axios.post(
+  //   `https://api.netlify.com/api/v1/accounts/${inputs.accountId}/env/DATABASE_URL?site_id=${constants.SITE_ID}`,
+  //   {
+  //     body: {
+  //       context: "branch",
+  //       context_parameter: netlifyConfig.build.environment.BRANCH,
+  //       value: stdout,
+  //     },
+  //     headers: {
+  //       Authorization: `Bearer ${constants.NETLIFY_API_TOKEN}`,
+  //     },
+  //   }
+  // );
+};
+
+export const onError = async ({ utils: { run }, netlifyConfig }) => {
+  const __dirname = path.resolve();
+  await run.command(path.join(__dirname, "/plugin/delete.sh"));
 };
