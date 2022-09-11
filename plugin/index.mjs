@@ -15,7 +15,7 @@ export const onPreBuild = async function ({
     //   path.join(__dirname, "/plugin/snaplet.sh")
     // );
 
-    const res = await fetch(
+    await fetch(
       `https://api.netlify.com/api/v1/accounts/${inputs.accountId}/env/DATABASE_URL?site_id=${constants.SITE_ID}`,
       {
         method: "PATCH",
@@ -31,8 +31,6 @@ export const onPreBuild = async function ({
         },
       }
     );
-
-    console.log({ res });
   }
 };
 
@@ -45,4 +43,25 @@ export const onError = async ({ utils: { run } }) => {
       console.log("DB does not exist");
     }
   }
+};
+
+export const onPostBuild = async ({ utils: { run } }) => {
+  const res = await fetch(
+    `https://api.netlify.com/api/v1/accounts/${inputs.accountId}/env/DATABASE_URL?site_id=${constants.SITE_ID}`,
+    {
+      method: "PATCH",
+      body: {
+        context: "branch",
+        context_parameter: netlifyConfig.build.environment.BRANCH,
+        value: "created_here",
+      },
+      headers: {
+        Authorization: `Bearer bnX08e9JhK_4DsgpjLbXS1PZPDrM3VZGhJ9SI`,
+        // Authorization: `Bearer ${process.env.API_ACCESS_TOKEN}`,
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
+  console.log({ onPostBuild: res });
 };
