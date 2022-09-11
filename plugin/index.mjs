@@ -34,18 +34,18 @@ export const onPreBuild = async function ({
   }
 };
 
-export const onError = async ({ utils: { run } }) => {
-  if (process.env.CONTEXT === "deploy-preview") {
-    const __dirname = path.resolve();
-    try {
-      await run.command(path.join(__dirname, "/plugin/delete.sh"));
-    } catch (err) {
-      console.log("DB does not exist");
-    }
-  }
-};
+// export const onError = async ({ utils: { run } }) => {
+//   if (process.env.CONTEXT === "deploy-preview") {
+//     const __dirname = path.resolve();
+//     try {
+//       await run.command(path.join(__dirname, "/plugin/delete.sh"));
+//     } catch (err) {
+//       console.log("DB does not exist");
+//     }
+//   }
+// };
 
-export const onPostBuild = async ({ utils: { run } }) => {
+export const onPostBuild = async ({ inputs, constants, netlifyConfig }) => {
   const res = await fetch(
     `https://api.netlify.com/api/v1/accounts/${inputs.accountId}/env/DATABASE_URL?site_id=${constants.SITE_ID}`,
     {
