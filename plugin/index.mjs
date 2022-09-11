@@ -15,7 +15,7 @@ export const onPreBuild = async function ({
     //   path.join(__dirname, "/plugin/snaplet.sh")
     // );
 
-    await fetch(
+    const res = await fetch(
       `https://api.netlify.com/api/v1/accounts/${inputs.accountId}/env/DATABASE_URL?site_id=${constants.SITE_ID}`,
       {
         method: "PATCH",
@@ -31,6 +31,8 @@ export const onPreBuild = async function ({
         },
       }
     );
+
+    console.log({ res });
   }
 };
 
