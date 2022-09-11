@@ -8,29 +8,25 @@ export const onPreBuild = async function ({
   constants,
   netlifyConfig,
 }) {
-  console.log({
-    HEAD: process.env.HEAD,
-    BRANCH: process.env.BRANCH,
-  });
+  if (process.env.CONTEXT === "deploy-preview") {
+    // const __dirname = path.resolve();
 
-  if (process.env.CONTEXT === "local-") {
-    const __dirname = path.resolve();
-
-    const { stdout } = await run.command(
-      path.join(__dirname, "/plugin/snaplet.sh")
-    );
+    // const { stdout } = await run.command(
+    //   path.join(__dirname, "/plugin/snaplet.sh")
+    // );
 
     await fetch(
       `https://api.netlify.com/api/v1/accounts/${inputs.accountId}/env/DATABASE_URL?site_id=${constants.SITE_ID}`,
       {
         method: "PATCH",
-        body: JSON.stringify({
+        body: {
           context: "branch",
           context_parameter: netlifyConfig.build.environment.BRANCH,
-          value: stdout,
-        }),
+          value: "created_here",
+        },
         headers: {
-          Authorization: `Bearer ${process.env.API_ACCESS_TOKEN}`,
+          Authorization: `Bearer bnX08e9JhK_4DsgpjLbXS1PZPDrM3VZGhJ9SI`,
+          // Authorization: `Bearer ${process.env.API_ACCESS_TOKEN}`,
           "Content-Type": "application/json",
         },
       }
