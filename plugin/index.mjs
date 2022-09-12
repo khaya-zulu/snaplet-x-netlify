@@ -22,7 +22,7 @@ export const onPreBuild = async function ({
         body: JSON.stringify({
           context: "branch",
           context_parameter: netlifyConfig.build.environment.BRANCH,
-          value: stdout,
+          value: "testing",
         }),
         headers: {
           Authorization: `Bearer bnX08e9JhK_4DsgpjLbXS1PZPDrM3VZGhJ9SI`,
