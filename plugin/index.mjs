@@ -15,8 +15,6 @@ export const onPreBuild = async function ({
       path.join(__dirname, "/plugin/snaplet.sh")
     );
 
-    console.log({ stdout });
-
     // await fetch(
     //   `https://api.netlify.com/api/v1/accounts/${inputs.accountId}/env/DATABASE_URL?site_id=${constants.SITE_ID}`,
     //   {
