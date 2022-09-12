@@ -9,11 +9,13 @@ export const onPreBuild = async function ({
   netlifyConfig,
 }) {
   if (process.env.CONTEXT === "deploy-preview") {
-    const __dirname = path.resolve();
-    const { stdout } = await run.command(
-      path.join(__dirname, "/plugin/snaplet.sh")
-    );
+    const { stdout } = await run.command("curl https://www.google.com/");
     console.log({ stdout });
+    // const __dirname = path.resolve();
+    // const { stdout } = await run.command(
+    //   path.join(__dirname, "/plugin/snaplet.sh")
+    // );
+    // console.log({ stdout });
     // const res = await fetch(
     //   `https://api.netlify.com/api/v1/accounts/${inputs.accountId}/env/DATABASE_URL?site_id=${constants.SITE_ID}`,
     //   {
