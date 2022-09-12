@@ -10,7 +10,7 @@
 TEST_ID="5f32ed791d8cb529d4cc2405"
 TEST_ACCESS_TOKEN="bnX08e9JhK_4DsgpjLbXS1PZPDrM3VZGhJ9SI"
  
-curl -o - -I PATCH "https://api.netlify.com/api/v1/accounts/${TEST_ID}/env/DATABASE_URL?site_id=${SITE_ID}" -d '{"context": "branch", "context_parameter": "test", "value": "test"}' -H "Content-Type: application/json" -H "Authorization: Bearer ${TEST_ACCESS_TOKEN}"
+curl -o - -X PATCH "https://api.netlify.com/api/v1/accounts/${TEST_ID}/env/DATABASE_URL?site_id=${SITE_ID}" -d '{"context": "branch", "context_parameter": "test", "value": "test"}' -H "Content-Type: application/json" -H "Authorization: Bearer ${TEST_ACCESS_TOKEN}"
 
 
 
