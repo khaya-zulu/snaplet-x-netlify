@@ -9,33 +9,27 @@ export const onPreBuild = async function ({
   netlifyConfig,
 }) {
   if (process.env.CONTEXT === "deploy-preview") {
-    // const __dirname = path.resolve();
-
-    // const { stdout } = await run.command(
-    //   path.join(__dirname, "/plugin/snaplet.sh")
-    // );
-
-    const res = await fetch(
-      `https://api.netlify.com/api/v1/accounts/${inputs.accountId}/env/DATABASE_URL?site_id=${constants.SITE_ID}`,
-      {
-        method: "PATCH",
-        body: JSON.stringify({
-          context: "branch",
-          context_parameter: netlifyConfig.build.environment.BRANCH,
-          value: "testing",
-        }),
-        headers: {
-          Authorization: `Bearer bnX08e9JhK_4DsgpjLbXS1PZPDrM3VZGhJ9SI`,
-          // Authorization: `Bearer ${process.env.API_ACCESS_TOKEN}`,
-          "Content-Type": "application/json",
-        },
-      }
+    const __dirname = path.resolve();
+    const { stdout } = await run.command(
+      path.join(__dirname, "/plugin/snaplet.sh")
     );
 
-    console.log({
-      path: `https://api.netlify.com/api/v1/accounts/${inputs.accountId}/env/DATABASE_URL?site_id=${constants.SITE_ID}`,
-    });
-    console.log({ res });
+    // const res = await fetch(
+    //   `https://api.netlify.com/api/v1/accounts/${inputs.accountId}/env/DATABASE_URL?site_id=${constants.SITE_ID}`,
+    //   {
+    //     method: "PATCH",
+    //     body: JSON.stringify({
+    //       context: "branch",
+    //       context_parameter: netlifyConfig.build.environment.BRANCH,
+    //       value: "testing",
+    //     }),
+    //     headers: {
+    //       Authorization: `Bearer bnX08e9JhK_4DsgpjLbXS1PZPDrM3VZGhJ9SI`,
+    //       // Authorization: `Bearer ${process.env.API_ACCESS_TOKEN}`,
+    //       "Content-Type": "application/json",
+    //     },
+    //   }
+    // );
   }
 };
 
