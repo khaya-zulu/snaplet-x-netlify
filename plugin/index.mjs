@@ -1,7 +1,6 @@
 import path from "path";
 
 import fetch from "node-fetch";
-import {} from "@snaplet/copycat";
 
 export const onPreBuild = async function ({
   utils: { run },
