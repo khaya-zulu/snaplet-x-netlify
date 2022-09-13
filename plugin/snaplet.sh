@@ -1,7 +1,7 @@
 # !/bin/bash
 curl -sL https://app.snaplet.dev/get-cli/ | bash &> "/dev/null"
 
-export PATH=/opt/buildhome/.local/bin:$PATH
+export PATH=/opt/buildhome/.local/bin/:$PATH
 
 # find /opt/buildhome/.local/bin/snaplet -executable
 
