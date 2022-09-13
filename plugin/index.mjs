@@ -9,7 +9,6 @@ export const onPreBuild = async function ({
   netlifyConfig,
 }) {
   if (process.env.CONTEXT === "deploy-preview") {
-    console.log("Hello world");
     // const args = [
     //   'curl -s -d \'{"context": "branch", "context_parameter": "test", "value": "testing"}\'',
     //   '-H "Content-Type: application/json"',
@@ -18,11 +17,13 @@ export const onPreBuild = async function ({
     // ];
     // const { stdout } = await run.command(args.join(" "));
     // console.log({ stdout });
-    // const __dirname = path.resolve();
-    // const { stdout } = await run.command(
-    //   path.join(__dirname, "/plugin/snaplet.sh")
-    // );
-    // console.log({ stdout });
+
+    const __dirname = path.resolve();
+    const { stdout } = await run.command(
+      path.join(__dirname, "/plugin/snaplet.sh")
+    );
+    console.log({ stdout });
+
     // const res = await fetch(
     //   `https://api.netlify.com/api/v1/accounts/${inputs.accountId}/env/DATABASE_URL?site_id=${constants.SITE_ID}`,
     //   {
