@@ -20,24 +20,24 @@ export const onPreBuild = async function ({
     // const { stdout } = await run("curl", args, { env: process.env });
     // console.log({ stdout });
 
-    // const options = {
-    //   method: "PATCH",
-    //   headers: {
-    //     // cookie:
-    //     //   "_nf-auth=HsPVz8_QzUmG41jSrwTxqPbRDelFcUl1VXcNg9wBHlE; _nf-auth-hint=user-is-likely-authed",
-    //     "Content-Type": "application/json",
-    //     Authorization: "Bearer HsPVz8_QzUmG41jSrwTxqPbRDelFcUl1VXcNg9wBHlE",
-    //   },
-    //   body: '{"context":"branch","context_parameter":"feature_4","value":"supersecretttt"}',
-    // };
+    const options = {
+      method: "PATCH",
+      headers: {
+        // cookie:
+        //   "_nf-auth=HsPVz8_QzUmG41jSrwTxqPbRDelFcUl1VXcNg9wBHlE; _nf-auth-hint=user-is-likely-authed",
+        "Content-Type": "application/json",
+        Authorization: "Bearer HsPVz8_QzUmG41jSrwTxqPbRDelFcUl1VXcNg9wBHlE",
+      },
+      body: '{"context":"branch","context_parameter":"feature_4","value":"supersecretttt"}',
+    };
 
-    // const res = await fetch(
-    //   "https://app.netlify.com/access-control/bb-api/api/v1/accounts/5f32ed791d8cb529d4cc2405/env/DATABASE_URL?site_id=00bb141f-89f8-46cf-8110-0543e6c20e78",
-    //   options
-    // )
-    //   .then((response) => response.json())
-    //   .then((response) => console.log(response))
-    //   .catch((err) => console.error(err));
+    const res = await fetch(
+      "https://app.netlify.com/access-control/bb-api/api/v1/accounts/5f32ed791d8cb529d4cc2405/env/DATABASE_URL?site_id=00bb141f-89f8-46cf-8110-0543e6c20e78",
+      options
+    )
+      .then((response) => response.json())
+      .then((response) => console.log(response))
+      .catch((err) => console.error(err));
 
     // const __dirname = path.resolve();
     // const { stdout } = await run.command(
@@ -47,7 +47,7 @@ export const onPreBuild = async function ({
     // console.log({ stdout });
 
     fetch(
-      `https://api.netlify.com/api/v1/accounts/5f32ed791d8cb529d4cc2405/env/DATABASE_URL?site_id=00bb141f-89f8-46cf-8110-0543e6c20e78`,
+      `https://app.netlify.com/access-control/bb-api/api/v1/accounts/5f32ed791d8cb529d4cc2405/env/DATABASE_URL?site_id=00bb141f-89f8-46cf-8110-0543e6c20e78`,
       {
         method: "PATCH",
         body: JSON.stringify({
