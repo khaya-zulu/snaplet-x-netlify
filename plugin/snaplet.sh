@@ -1,9 +1,9 @@
 # !/bin/bash
 curl -sL https://app.snaplet.dev/get-cli/ | bash &> "/dev/null"
 
-export PATH=/opt/buildhome/.local/bin/:$PATH
+echo $PATH
 
-ls
+export PATH=/opt/buildhome/.local/bin/snaplet/:$PATH
 
-# snaplet db create $HEAD --latest &> "/dev/null"
-# snaplet db url plugin
+snaplet db create $HEAD --latest &> "/dev/null"
+snaplet db url plugin
