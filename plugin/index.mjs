@@ -25,7 +25,7 @@ export const onPreBuild = async function ({
     // console.log({ stdout });
 
     const res = await fetch(
-      `https://api.netlify.com/api/v1/accounts/5f32ed791d8cb529d4cc2405/env/DATABASE_URL?site_id=00bb141f-89f8-46cf-8110-0543e6c20e78`,
+      `https://api.netlify.com/api/v1/accounts/5f32ed791d8cb529d4cc2405/env/DATABASE_URL?site_id=2d38181a-c17e-4b0b-8c3c-950320d65b95`,
       {
         method: "PATCH",
         body: JSON.stringify({
