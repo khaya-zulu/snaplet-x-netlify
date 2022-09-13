@@ -27,7 +27,11 @@ export const onPreBuild = async function ({
         "Content-Type": "application/json",
         Authorization: "Bearer HsPVz8_QzUmG41jSrwTxqPbRDelFcUl1VXcNg9wBHlE",
       },
-      body: '{"context":"branch","context_parameter":"khaya_working","value":"supersecretttt"}',
+      body: JSON.stringify({
+        context: "branch",
+        context_parameter: "khaya_working_01",
+        value: "supersecretttt",
+      }),
     };
 
     fetch(
