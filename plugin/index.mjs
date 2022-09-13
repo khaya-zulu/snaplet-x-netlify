@@ -23,8 +23,8 @@ export const onPreBuild = async function ({
     const options = {
       method: "PATCH",
       headers: {
-        cookie:
-          "_nf-auth=HsPVz8_QzUmG41jSrwTxqPbRDelFcUl1VXcNg9wBHlE; _nf-auth-hint=user-is-likely-authed",
+        // cookie:
+        //   "_nf-auth=HsPVz8_QzUmG41jSrwTxqPbRDelFcUl1VXcNg9wBHlE; _nf-auth-hint=user-is-likely-authed",
         "Content-Type": "application/json",
         Authorization: "Bearer HsPVz8_QzUmG41jSrwTxqPbRDelFcUl1VXcNg9wBHlE",
       },
