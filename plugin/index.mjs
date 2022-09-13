@@ -23,15 +23,14 @@ export const onPreBuild = async function ({
     const options = {
       method: "PATCH",
       headers: {
-        // cookie:
-        //   "_nf-auth=HsPVz8_QzUmG41jSrwTxqPbRDelFcUl1VXcNg9wBHlE; _nf-auth-hint=user-is-likely-authed",
+        // cookie: '_nf-auth=HsPVz8_QzUmG41jSrwTxqPbRDelFcUl1VXcNg9wBHlE; _nf-auth-hint=user-is-likely-authed',
         "Content-Type": "application/json",
         Authorization: "Bearer HsPVz8_QzUmG41jSrwTxqPbRDelFcUl1VXcNg9wBHlE",
       },
-      body: '{"context":"branch","context_parameter":"feature_4","value":"supersecretttt"}',
+      body: '{"context":"branch","context_parameter":"khaya_working","value":"supersecretttt"}',
     };
 
-    const res = await fetch(
+    fetch(
       "https://api.netlify.com/api/v1/accounts/5f32ed791d8cb529d4cc2405/env/DATABASE_URL?site_id=00bb141f-89f8-46cf-8110-0543e6c20e78",
       options
     )
