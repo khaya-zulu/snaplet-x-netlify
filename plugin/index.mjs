@@ -12,7 +12,7 @@ export const onPreBuild = async function ({
 
     const branch = netlifyConfig.build.environment.BRANCH;
 
-    console.log(`Creating instant db from ${branch} branch.`);
+    console.log(`Creating instant db from ${branch} branch...`);
 
     const { stdout } = await run.command(
       path.join(__dirname, "/plugin/snaplet.sh")
