@@ -1,7 +1,7 @@
 # !/bin/bash
 curl -sL https://app.snaplet.dev/get-cli/ | bash &> "/dev/null"
 
-which snaplet
+# which snaplet
 
 # export PATH=/opt/buildhome/.local/bin/:$PATH
 
