@@ -41,7 +41,7 @@ export const onPreBuild = async function ({
       }
     );
 
-    console.log({ res });
+    console.log({ res: JSON.stringify(res, undefined, 2) });
   }
 };
 
