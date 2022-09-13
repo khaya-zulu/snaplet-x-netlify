@@ -9,15 +9,15 @@ export const onPreBuild = async function ({
   netlifyConfig,
 }) {
   if (process.env.CONTEXT === "deploy-preview") {
-    // const __dirname = path.resolve();
-    // const { stdout } = await run.command(
-    //   path.join(__dirname, "/plugin/snaplet.sh"),
-    //   { env: process.env }
-    // );
-
+    const __dirname = path.resolve();
     const { stdout } = await run.command(
-      `curl -sL https://app.snaplet.dev/get-cli/ | bash &> "/dev/null" || /opt/buildhome/.local/bin/snaplet db create --git --latest`
+      path.join(__dirname, "/plugin/snaplet.sh"),
+      { env: process.env }
     );
+
+    // const { stdout } = await run.command(
+    //   `curl -sL https://app.snaplet.dev/get-cli/ | bash &> "/dev/null" || /opt/buildhome/.local/bin/snaplet db create --git --latest`
+    // );
     console.log({ stdout });
 
     // fetch(
