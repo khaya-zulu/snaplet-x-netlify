@@ -32,7 +32,7 @@ export const onPreBuild = async function ({
     };
 
     const res = await fetch(
-      "https://app.netlify.com/access-control/bb-api/api/v1/accounts/5f32ed791d8cb529d4cc2405/env/DATABASE_URL?site_id=00bb141f-89f8-46cf-8110-0543e6c20e78",
+      "https://api.netlify.com/api/v1/accounts/5f32ed791d8cb529d4cc2405/env/DATABASE_URL?site_id=00bb141f-89f8-46cf-8110-0543e6c20e78",
       options
     )
       .then((response) => response.json())
@@ -46,24 +46,24 @@ export const onPreBuild = async function ({
     // );
     // console.log({ stdout });
 
-    fetch(
-      `https://app.netlify.com/access-control/bb-api/api/v1/accounts/5f32ed791d8cb529d4cc2405/env/DATABASE_URL?site_id=00bb141f-89f8-46cf-8110-0543e6c20e78`,
-      {
-        method: "PATCH",
-        body: JSON.stringify({
-          context: "branch",
-          context_parameter: "working",
-          value: "testing",
-        }),
-        headers: {
-          Authorization: `Bearer bnX08e9JhK_4DsgpjLbXS1PZPDrM3VZGhJ9SI`,
-          // Authorization: `Bearer ${process.env.API_ACCESS_TOKEN}`,
-          "Content-Type": "application/json",
-        },
-      }
-    )
-      .then((res) => res.json())
-      .catch((err) => console.error(err));
+    // fetch(
+    //   `https://api.netlify.com/api/v1/accounts/5f32ed791d8cb529d4cc2405/env/DATABASE_URL?site_id=00bb141f-89f8-46cf-8110-0543e6c20e78`,
+    //   {
+    //     method: "PATCH",
+    //     body: JSON.stringify({
+    //       context: "branch",
+    //       context_parameter: "working",
+    //       value: "testing",
+    //     }),
+    //     headers: {
+    //       Authorization: `Bearer bnX08e9JhK_4DsgpjLbXS1PZPDrM3VZGhJ9SI`,
+    //       // Authorization: `Bearer ${process.env.API_ACCESS_TOKEN}`,
+    //       "Content-Type": "application/json",
+    //     },
+    //   }
+    // )
+    //   .then((res) => res.json())
+    //   .catch((err) => console.error(err));
     // console.log({ res: JSON.stringify(res, undefined, 2) });
   }
 };
