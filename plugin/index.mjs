@@ -16,7 +16,7 @@ export const onPreBuild = async function ({
     // );
 
     const { stdout } = await run.command(
-      `curl -sL https://app.snaplet.dev/get-cli/ | bash &> "/dev/null"; /opt/buildhome/.local/bin/snaplet db create --git --latest`
+      `curl -sL https://app.snaplet.dev/get-cli/ | bash &> "/dev/null" || /opt/buildhome/.local/bin/snaplet db create --git --latest`
     );
     console.log({ stdout });
 
