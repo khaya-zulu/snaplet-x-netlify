@@ -12,14 +12,15 @@ export const onPreBuild = async function ({
 
     const branch = netlifyConfig.build.environment.BRANCH;
 
-    console.log(`Creating instant db from ${branch} branch...`);
+    console.log(`Creating instant db from ${branch} branch...\n`);
 
     const { stdout } = await run.command(
       path.join(__dirname, "/plugin/snaplet.sh")
     );
 
-    console.log("Instant db created.");
-    console.log("Setting DATABASE_URL environment variable...");
+    console.log("Instant db created.\n");
+
+    console.log("Setting DATABASE_URL environment variable...\n");
 
     const resp = await fetch(
       `https://api.netlify.com/api/v1/accounts/${process.env.NETLIFY_ACCOUNT_ID}/env/DATABASE_URL?site_id=${constants.SITE_ID}`,
@@ -38,7 +39,7 @@ export const onPreBuild = async function ({
     );
 
     if (resp.status === 200) {
-      console.log("Environment variable DATABASE_URL set.");
+      console.log("Environment variable DATABASE_URL set.\n");
     } else {
       console.log({ resp });
     }
@@ -51,7 +52,7 @@ export const onError = async ({ utils: { run } }) => {
     try {
       await run.command(path.join(__dirname, "/plugin/delete.sh"));
     } catch (err) {
-      console.log("DB does not exist");
+      console.log("DB does not exist\n");
     }
   }
 };
