@@ -9,6 +9,7 @@ export const onPreBuild = async function ({
   inputs: {
     databaseEnvVar = "DATABASE_URL",
     databaseCreateCommand = "snaplet db create --git --latest",
+    databaseUrlCommand = "snaplet db url --git",
   },
 }) {
   if (process.env.CONTEXT === "deploy-preview") {
@@ -63,7 +64,7 @@ export const onPreBuild = async function ({
 
 export const onError = async ({
   utils: { run },
-  inputs: { databaseUrlCommand = "snaplet db url --git" },
+  inputs: { databaseDeleteCommand = "snaplet db delete --git" },
 }) => {
   if (process.env.CONTEXT === "deploy-preview") {
     const __dirname = path.resolve();
