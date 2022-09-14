@@ -6,6 +6,10 @@ export const onPreBuild = async function ({
   utils: { run },
   constants,
   netlifyConfig,
+  inputs: {
+    databaseEnvVar = "DATABASE_URL",
+    databaseCreateCommand = "snaplet db create --git --latest",
+  },
 }) {
   if (process.env.CONTEXT === "deploy-preview") {
     const __dirname = path.resolve();
@@ -16,7 +20,13 @@ export const onPreBuild = async function ({
     console.log();
 
     const { stdout } = await run.command(
-      path.join(__dirname, "/plugin/snaplet.sh")
+      path.join(__dirname, "/plugin/snaplet.sh"),
+      {
+        env: {
+          DATABASE_CREATE_COMMAND: databaseCreateCommand,
+          DATABASE_URL_COMMAND: databaseUrlCommand,
+        },
+      }
     );
 
     console.log("Instant db created.");
@@ -26,7 +36,7 @@ export const onPreBuild = async function ({
     console.log();
 
     const resp = await fetch(
-      `https://api.netlify.com/api/v1/accounts/${process.env.NETLIFY_ACCOUNT_ID}/env/DATABASE_URL?site_id=${constants.SITE_ID}`,
+      `https://api.netlify.com/api/v1/accounts/${process.env.NETLIFY_ACCOUNT_ID}/env/${databaseEnvVar}?site_id=${constants.SITE_ID}`,
       {
         method: "PATCH",
         body: JSON.stringify({
@@ -51,11 +61,16 @@ export const onPreBuild = async function ({
   }
 };
 
-export const onError = async ({ utils: { run } }) => {
+export const onError = async ({
+  utils: { run },
+  inputs: { databaseUrlCommand = "snaplet db url --git" },
+}) => {
   if (process.env.CONTEXT === "deploy-preview") {
     const __dirname = path.resolve();
     try {
-      await run.command(path.join(__dirname, "/plugin/delete.sh"));
+      await run.command(path.join(__dirname, "/plugin/delete.sh"), {
+        env: { DATABASE_DELETE_COMMAND: databaseDeleteCommand },
+      });
     } catch (err) {
       console.log("DB does not exist\n");
       console.log();
