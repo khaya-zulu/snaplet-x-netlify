@@ -1,6 +1,1 @@
-# manifest.yml
-name: netlify-plugin-hello-world
-
-inputs:
-  - name: accountId
-    description: Netlify account ID
+name: snaplet-netlify-plugin-preview-db
