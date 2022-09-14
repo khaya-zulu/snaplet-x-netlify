@@ -13,64 +13,42 @@ export const onPreBuild = async function ({
     reset = false,
   },
 }) {
-  if (process.env.CONTEXT === "deploy-preview") {
-    const __dirname = path.resolve();
-
-    const branch = netlifyConfig.build.environment.BRANCH;
-
-    console.log(`Creating instant db from ${branch} branch...`);
-
-    const { stdout } = await run.command(
-      path.join(__dirname, "/plugin/snaplet.sh"),
-      {
-        env: {
-          DATABASE_CREATE_COMMAND: databaseCreateCommand,
-          DATABASE_URL_COMMAND: databaseUrlCommand,
-          DATABASE_RESET: reset,
-        },
-      }
-    );
-
-    console.log("Instant db created.");
-
-    console.log("Setting DATABASE_URL environment variable...");
-
-    const resp = await fetch(
-      `https://api.netlify.com/api/v1/accounts/${process.env.NETLIFY_ACCOUNT_ID}/env/${databaseEnvVar}?site_id=${constants.SITE_ID}`,
-      {
-        method: "PATCH",
-        body: JSON.stringify({
-          context: "branch",
-          context_parameter: branch,
-          value: stdout,
-        }),
-        headers: {
-          Authorization: `Bearer ${process.env.NETLIFY_ACCESS_TOKEN}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
-
-    if (resp.status === 200) {
-      console.log("Environment variable DATABASE_URL set.\n");
-    } else {
-      console.log({ resp });
-    }
-  }
-};
-
-export const onError = async ({
-  utils: { run },
-  inputs: { databaseDeleteCommand = "snaplet db delete --git" },
-}) => {
-  if (process.env.CONTEXT === "deploy-preview") {
-    const __dirname = path.resolve();
-    try {
-      await run.command(path.join(__dirname, "/plugin/delete.sh"), {
-        env: { DATABASE_DELETE_COMMAND: databaseDeleteCommand },
-      });
-    } catch (err) {
-      console.log("DB does not exist\n");
-    }
-  }
+  console.log({ env: process.env.HELLO_WORLD });
+  // if (process.env.CONTEXT === "deploy-preview") {
+  //   const __dirname = path.resolve();
+  //   const branch = netlifyConfig.build.environment.BRANCH;
+  //   console.log(`Creating instant db from ${branch} branch...`);
+  //   const { stdout } = await run.command(
+  //     path.join(__dirname, "/plugin/snaplet.sh"),
+  //     {
+  //       env: {
+  //         DATABASE_CREATE_COMMAND: databaseCreateCommand,
+  //         DATABASE_URL_COMMAND: databaseUrlCommand,
+  //         DATABASE_RESET: reset,
+  //       },
+  //     }
+  //   );
+  //   console.log("Instant db created.");
+  //   console.log("Setting DATABASE_URL environment variable...");
+  //   const resp = await fetch(
+  //     `https://api.netlify.com/api/v1/accounts/${process.env.NETLIFY_ACCOUNT_ID}/env/${databaseEnvVar}?site_id=${constants.SITE_ID}`,
+  //     {
+  //       method: "PATCH",
+  //       body: JSON.stringify({
+  //         context: "branch",
+  //         context_parameter: branch,
+  //         value: stdout,
+  //       }),
+  //       headers: {
+  //         Authorization: `Bearer ${process.env.NETLIFY_ACCESS_TOKEN}`,
+  //         "Content-Type": "application/json",
+  //       },
+  //     }
+  //   );
+  //   if (resp.status === 200) {
+  //     console.log("Environment variable DATABASE_URL set.\n");
+  //   } else {
+  //     console.log({ resp });
+  //   }
+  // }
 };

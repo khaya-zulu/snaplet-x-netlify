@@ -11,8 +11,8 @@
 [[plugins]]
   package = "/plugin/index.mjs"
 
-  # [plugins.inputs]
-  #   accountId = "5f32ed791d8cb529d4cc2405"
+  [plugins.environment]
+    HELLO_WORLD="testing this works"
 
   # ignore = "node ignore_build.js"
 
