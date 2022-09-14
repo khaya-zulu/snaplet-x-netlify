@@ -10,6 +10,7 @@ export const onPreBuild = async function ({
     databaseEnvVar = "DATABASE_URL",
     databaseCreateCommand = "snaplet db create --git --latest",
     databaseUrlCommand = "snaplet db url --git",
+    reset = false,
   },
 }) {
   if (process.env.CONTEXT === "deploy-preview") {
@@ -18,7 +19,6 @@ export const onPreBuild = async function ({
     const branch = netlifyConfig.build.environment.BRANCH;
 
     console.log(`Creating instant db from ${branch} branch...`);
-    console.log();
 
     const { stdout } = await run.command(
       path.join(__dirname, "/plugin/snaplet.sh"),
@@ -26,15 +26,14 @@ export const onPreBuild = async function ({
         env: {
           DATABASE_CREATE_COMMAND: databaseCreateCommand,
           DATABASE_URL_COMMAND: databaseUrlCommand,
+          DATABASE_RESET: reset,
         },
       }
     );
 
     console.log("Instant db created.");
-    console.log();
 
-    console.log("Setting DATABASE_URL environment variable...\n");
-    console.log();
+    console.log("Setting DATABASE_URL environment variable...");
 
     const resp = await fetch(
       `https://api.netlify.com/api/v1/accounts/${process.env.NETLIFY_ACCOUNT_ID}/env/${databaseEnvVar}?site_id=${constants.SITE_ID}`,
@@ -54,10 +53,8 @@ export const onPreBuild = async function ({
 
     if (resp.status === 200) {
       console.log("Environment variable DATABASE_URL set.\n");
-      console.log();
     } else {
       console.log({ resp });
-      console.log();
     }
   }
 };
@@ -74,7 +71,6 @@ export const onError = async ({
       });
     } catch (err) {
       console.log("DB does not exist\n");
-      console.log();
     }
   }
 };

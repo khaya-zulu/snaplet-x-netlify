@@ -12,3 +12,6 @@ inputs:
 
   - name: databaseUrlCommand
     description: Command used to get the instant database url
+
+  - name: reset
+    description: Reset the database state on each commit
