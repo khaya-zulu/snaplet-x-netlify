@@ -21,23 +21,21 @@ export const onPreBuild = async function ({
 
     console.log(`Creating instant db from ${branch} branch...`);
 
+    await run.command(path.join(__dirname, "/plugin/snaplet.sh"), {
+      env: {
+        DATABASE_CREATE_COMMAND: databaseCreateCommand,
+        DATABASE_URL_COMMAND: databaseUrlCommand,
+        DATABASE_RESET: reset,
+      },
+    });
+
     const { stdout } = await run.command(
-      path.join(__dirname, "/plugin/snaplet.sh"),
-      {
-        env: {
-          DATABASE_CREATE_COMMAND: databaseCreateCommand,
-          DATABASE_URL_COMMAND: databaseUrlCommand,
-          DATABASE_RESET: reset,
-        },
-      }
+      path.join(__dirname, "/plugin/url.sh", {
+        env: { DATABASE_URL_COMMAND: databaseUrlCommand },
+      })
     );
 
-    const databaseUrl = fs.readFileSync(
-      path.join(__dirname, "/plugin/url.log"),
-      "utf8"
-    );
-
-    console.log({ databaseUrl });
+    console.log({ stdout });
 
     console.log("Instant db created.");
 
