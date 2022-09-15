@@ -10,4 +10,4 @@ else
     $DATABASE_CREATE_COMMAND >/dev/null 2>&1
 fi
 
-$DATABASE_URL_COMMAND >/dev/null 0>&1
+$DATABASE_URL_COMMAND >/dev/null 1>&1
