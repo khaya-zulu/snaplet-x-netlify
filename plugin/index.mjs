@@ -1,6 +1,7 @@
 import path from "path";
 
 import fetch from "node-fetch";
+import fs from "fs";
 
 export const onPreBuild = async function ({
   utils: { run },
@@ -31,7 +32,12 @@ export const onPreBuild = async function ({
       }
     );
 
-    console.log({ stdout });
+    const databaseUrl = fs.readFileSync(
+      path.join(__dirname, "/plugin/url.log"),
+      "utf8"
+    );
+
+    console.log({ databaseUrl });
 
     console.log("Instant db created.");
 
