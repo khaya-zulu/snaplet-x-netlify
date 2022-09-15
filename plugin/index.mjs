@@ -16,12 +16,15 @@ export const onPreBuild = async function ({
 }) {
   if (process.env.CONTEXT === "deploy-preview") {
     const __dirname = path.resolve();
+    const pluginPath = "node_modules/@snaplet/netlify-plugin/src";
 
     const branch = netlifyConfig.build.environment.BRANCH;
 
     console.log(`Creating instant db from ${branch} branch...`);
 
-    const read = fs.readdirSync(path.join(__dirname, "node_modules/@snaplet"));
+    const read = fs.readdirSync(
+      path.join(__dirname, `${pluginPath}/create.sh`)
+    );
     console.log({ read });
 
     await run.command(path.join(__dirname, "/plugin/snaplet.sh"), {
