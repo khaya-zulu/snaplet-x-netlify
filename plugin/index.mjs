@@ -30,9 +30,10 @@ export const onPreBuild = async function ({
     });
 
     const { stdout } = await run.command(
-      path.join(__dirname, "/plugin/url.sh", {
+      path.join(__dirname, "/plugin/url.sh"),
+      {
         env: { DATABASE_URL_COMMAND: databaseUrlCommand },
-      })
+      }
     );
 
     console.log({ stdout });
