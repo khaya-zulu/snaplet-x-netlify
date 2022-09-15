@@ -18,7 +18,7 @@ jobs:
     if: ${{ github.event.action == 'closed' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: snaplet/action@v1
-        with:
-          delete: true
+      # - uses: snaplet/action@v1
+      #   with:
+      #     delete: true
       - uses: khaya-zulu/snaplet-netlify-action@main
