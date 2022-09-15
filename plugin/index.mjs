@@ -31,7 +31,7 @@ export const onPreBuild = async function ({
       }
     );
 
-    const stdoutArr = stdout.split(" ");
+    const stdoutArr = stdout.trim().split(" ");
 
     console.log({ bounce: stdoutArr[stdoutArr.length - 1] });
 
