@@ -5,9 +5,9 @@ export PATH=/opt/buildhome/.local/bin/:$PATH
 
 if [ "$DATABASE_RESET" == "false" ]
 then
-    $DATABASE_URL_COMMAND &> "/dev/null" || $DATABASE_CREATE_COMMAND 0>&1
+    $DATABASE_URL_COMMAND &> "/dev/null" || $DATABASE_CREATE_COMMAND >/dev/null 2>&1
 else
-    $DATABASE_CREATE_COMMAND 0>&1
+    $DATABASE_CREATE_COMMAND >/dev/null 2>&1
 fi
 
 $DATABASE_URL_COMMAND
