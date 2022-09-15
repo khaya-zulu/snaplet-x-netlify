@@ -22,7 +22,7 @@ export const onPreBuild = async function ({
     console.log(`Creating instant db from ${branch} branch...`);
 
     const read = fs.readdirSync(__dirname);
-    constants.log({ read });
+    console.log({ read });
 
     await run.command(path.join(__dirname, "/plugin/snaplet.sh"), {
       env: {
