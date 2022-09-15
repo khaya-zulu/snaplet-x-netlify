@@ -31,7 +31,9 @@ export const onPreBuild = async function ({
       }
     );
 
-    console.log("==========", { stdout }, "===========");
+    const stdoutArr = stdout.split(" ");
+
+    console.log({ bounce: stdoutArr[stdoutArr.length - 1] });
 
     console.log("Instant db created.");
 
@@ -44,7 +46,7 @@ export const onPreBuild = async function ({
         body: JSON.stringify({
           context: "branch",
           context_parameter: branch,
-          value: stdout,
+          value: stdoutArr[stdoutArr.length - 1],
         }),
         headers: {
           Authorization: `Bearer ${process.env.NETLIFY_ACCESS_TOKEN}`,
