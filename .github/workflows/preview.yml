@@ -22,3 +22,5 @@ jobs:
       #   with:
       #     delete: true
       - uses: khaya-zulu/snaplet-netlify-action@main
+        with:
+          databaseEnvVar: "HELLO_WORLD"
