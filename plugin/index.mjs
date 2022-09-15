@@ -21,7 +21,7 @@ export const onPreBuild = async function ({
 
     console.log(`Creating instant db from ${branch} branch...`);
 
-    const read = fs.readdirSync(path.join(__dirname, "node_modules"));
+    const read = fs.readdirSync(path.join(__dirname, "node_modules/@snaplet"));
     console.log({ read });
 
     await run.command(path.join(__dirname, "/plugin/snaplet.sh"), {
