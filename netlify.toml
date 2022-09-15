@@ -9,7 +9,7 @@
   #   NODE_VERSION = "18"
 
 [[plugins]]
-  package = "@snaplet/netlify-plugin"
+  package = "/plugin/index.mjs"
 
   # ignore = "node ignore_build.js"
 

@@ -31,6 +31,8 @@ export const onPreBuild = async function ({
       }
     );
 
+    console.log("==========", { stdout }, "===========");
+
     console.log("Instant db created.");
 
     console.log("Setting DATABASE_URL environment variable...");
