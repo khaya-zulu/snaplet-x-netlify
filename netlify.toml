@@ -9,10 +9,7 @@
   #   NODE_VERSION = "18"
 
 [[plugins]]
-  package = "/plugin/index.mjs"
-
-  [plugins.environment]
-    HELLO_WORLD="testing this works"
+  package = "@snaplet/netlify-plugin"
 
   # ignore = "node ignore_build.js"
 
