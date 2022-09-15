@@ -56,7 +56,7 @@ export const onPreBuild = async function ({
     );
 
     if (resp.status === 200) {
-      console.log("Environment variable DATABASE_URL set.\n");
+      console.log("Environment variable DATABASE_URL set.");
     } else {
       console.log({ resp });
     }
