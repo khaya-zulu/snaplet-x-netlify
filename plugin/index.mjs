@@ -31,7 +31,7 @@ export const onPreBuild = async function ({
       }
     );
 
-    console.log("==========", { stdout, stderr }, "===========");
+    console.log("==========", { stdout }, "===========");
 
     console.log("Instant db created.");
 
