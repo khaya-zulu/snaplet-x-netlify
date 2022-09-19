@@ -1,28 +1,55 @@
 import path from "path";
 
 import fetch from "node-fetch";
+import fs from "fs";
 
 export const onPreBuild = async function ({
   utils: { run },
   constants,
   netlifyConfig,
+  inputs: {
+    databaseEnvVar = "DATABASE_URL",
+    databaseCreateCommand = "snaplet db create --git --latest",
+    databaseUrlCommand = "snaplet db url --git",
+    reset = false,
+  },
 }) {
   if (process.env.CONTEXT === "deploy-preview") {
     const __dirname = path.resolve();
+    const pluginPath = "node_modules/@snaplet/netlify-plugin/src";
 
     const branch = netlifyConfig.build.environment.BRANCH;
 
     console.log(`Creating instant db from ${branch} branch...`);
 
+    const read = fs.readdirSync(
+      path.join(__dirname, `${pluginPath}/create.sh`)
+    );
+    console.log({ read });
+
+    await run.command(path.join(__dirname, "/plugin/snaplet.sh"), {
+      env: {
+        DATABASE_CREATE_COMMAND: databaseCreateCommand,
+        DATABASE_URL_COMMAND: databaseUrlCommand,
+        DATABASE_RESET: reset,
+      },
+    });
+
     const { stdout } = await run.command(
-      path.join(__dirname, "/plugin/snaplet.sh")
+      path.join(__dirname, "/plugin/url.sh"),
+      {
+        env: { DATABASE_URL_COMMAND: databaseUrlCommand },
+      }
     );
 
+    console.log({ stdout });
+
     console.log("Instant db created.");
+
     console.log("Setting DATABASE_URL environment variable...");
 
     const resp = await fetch(
-      `https://api.netlify.com/api/v1/accounts/${process.env.NETLIFY_ACCOUNT_ID}/env/DATABASE_URL?site_id=${constants.SITE_ID}`,
+      `https://api.netlify.com/api/v1/accounts/${process.env.NETLIFY_ACCOUNT_ID}/env/${databaseEnvVar}?site_id=${constants.SITE_ID}`,
       {
         method: "PATCH",
         body: JSON.stringify({
@@ -41,17 +68,6 @@ export const onPreBuild = async function ({
       console.log("Environment variable DATABASE_URL set.");
     } else {
       console.log({ resp });
-    }
-  }
-};
-
-export const onError = async ({ utils: { run } }) => {
-  if (process.env.CONTEXT === "deploy-preview") {
-    const __dirname = path.resolve();
-    try {
-      await run.command(path.join(__dirname, "/plugin/delete.sh"));
-    } catch (err) {
-      console.log("DB does not exist");
     }
   }
 };

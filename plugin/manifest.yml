@@ -1,6 +1,17 @@
-# manifest.yml
-name: netlify-plugin-hello-world
+name: snaplet-netlify-plugin-preview-db
 
 inputs:
-  - name: accountId
-    description: Netlify account ID
+  - name: databaseEnvVar
+    description: Database environment variable name
+
+  - name: databaseCreateCommand
+    description: Command used to generate the instant database
+
+  - name: databaseDeleteCommand
+    description: Command used to delete the instant database
+
+  - name: databaseUrlCommand
+    description: Command used to get the instant database url
+
+  - name: reset
+    description: Reset the database state on each commit

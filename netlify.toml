@@ -9,10 +9,7 @@
   #   NODE_VERSION = "18"
 
 [[plugins]]
-  package = "/plugin/index.mjs"
-
-  [plugins.inputs]
-    accountId = "5f32ed791d8cb529d4cc2405"
+  package = "@snaplet/netlify-plugin"
 
   # ignore = "node ignore_build.js"
 
