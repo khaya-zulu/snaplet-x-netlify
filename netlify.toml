@@ -8,7 +8,7 @@
   # [build.environment]
   #   NODE_VERSION = "18"
 
-# [[plugins]]
+[[plugins]]
   package = "@snaplet/netlify-plugin"
 
   # ignore = "node ignore_build.js"
