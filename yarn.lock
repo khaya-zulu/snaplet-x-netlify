@@ -1766,9 +1766,10 @@
     escape-string-regexp "^2.0.0"
     lodash.deburr "^4.1.0"
 
-"@snaplet/netlify-plugin@https://github.com/snaplet/netlify-plugin.git":
+"@snaplet/netlify-preview-database-plugin@1.0.0":
   version "1.0.0"
-  resolved "https://github.com/snaplet/netlify-plugin.git#eb15f9353b55e9fad7ca1a2fac34afc2e9e85b67"
+  resolved "https://registry.yarnpkg.com/@snaplet/netlify-preview-database-plugin/-/netlify-preview-database-plugin-1.0.0.tgz#b85ecf5284da416dbf25dc79861ff0164ce95826"
+  integrity sha512-T8DIOYzSGJJndd+64tkjqmL596VYNtPs35Qb1pZdJ9PwWHYLMuOCZXzrXluj7QOaAf8Eh/c6viEQX7MUBPNBXQ==
   dependencies:
     node-fetch "^3.2.10"
 
