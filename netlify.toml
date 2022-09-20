@@ -5,12 +5,5 @@
 
   publish = "public/"
 
-  # [build.environment]
-  #   NODE_VERSION = "18"
-
 [[plugins]]
   package = "@snaplet/netlify-preview-database-plugin"
-
-  # ignore = "node ignore_build.js"
-
-  # ignore = "node -e 'process.exit(process.env.CONTEXT === `deploy-preview` ? 0 : 1)'"
